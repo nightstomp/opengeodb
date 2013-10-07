@@ -33,5 +33,4 @@ Credits
 
 * <http://opengeodb.giswiki.org/wiki/OpenGeoDB>
 * OgdbDistance Lib by Manuel Hoppe
-
-
+* PHP Markdown Lib by Michel Fortin
