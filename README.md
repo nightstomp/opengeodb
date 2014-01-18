@@ -14,7 +14,7 @@ Codebeispiele
 Hinweise
 --------
 
-* Getestet mir REDAXO 4.5
+* Getestet mit REDAXO 4.5
 * AddOn-Ordner lautet: `opengeodb`
 * In der `settings.inc.php` werden kann angegeben welche Daten verwendet werden soll (siehe `data` Verzeichnis).
 
