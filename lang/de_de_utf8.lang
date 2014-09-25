@@ -1,2 +1,4 @@
 opengeodb_addon_help = Stellt die OgdbDistance Lib zur Umkreissuche für REDAXO bereit.
-opengeodb_help = Hilfe
+opengeodb_help_chapter_readme = Readme
+opengeodb_help_chapter_changelog = Changelog
+opengeodb_help_chapter_license = Lizenz

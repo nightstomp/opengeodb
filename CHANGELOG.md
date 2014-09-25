@@ -1,5 +1,5 @@
-OpenGeoDB - Changelog
-=====================
+OpenGeoDB AddOn - Changelog
+===========================
 
-### Version 1.0.0 - 07. Oktober 2013
+### Version 1.0.0 - 25. September 2014
 

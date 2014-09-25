@@ -6,9 +6,13 @@ Stellt die OgdbDistance Lib zur Umkreissuche für REDAXO bereit.
 Codebeispiele
 -------------
 
-`var_dump('Entfernung: ' . ogdbDistance(47443, 47058));`
+```php
+<?php
+var_dump('Entfernung: ' . ogdbDistance(47443, 47058));
 
-`var_dump("Umkreis:" . var_export(ogdbRadius(47443, 20), TRUE));`
+var_dump("Umkreis:" . var_export(ogdbRadius(47443, 20), TRUE));
+?>
+```
 
 
 Hinweise

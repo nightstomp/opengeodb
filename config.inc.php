@@ -18,10 +18,6 @@ if ($REX['REDAXO']) {
 	// includes
 	require($REX['INCLUDE_PATH'] . '/addons/opengeodb/classes/class.rex_opengeodb_utils.inc.php');
 
-	if (!class_exists("Michelf\Markdown")) {
-		require($REX['INCLUDE_PATH'] . '/addons/opengeodb/classes/class.markdown.inc.php');
-	}
-
 	// add lang file
 	$I18N->appendFile($REX['INCLUDE_PATH'] . '/addons/opengeodb/lang/');
 

@@ -14,13 +14,16 @@ class rex_opengeodb_utils {
 		if (file_exists($file)) {
 			$md = file_get_contents($file);
 			$md = str_replace($search, $replace, $md);
-			$md = seo42_utils::makeHeadlinePretty($md);
+			$md = self::makeHeadlinePretty($md);
 
-			$parser = new Michelf\Markdown;
-			return $parser->transform($md);
+			return Parsedown::instance()->parse($md);
 		} else {
 			return '[translate:' . $file . ']';
 		}
+	}
+
+	public static function makeHeadlinePretty($md) {
+		return str_replace('OpenGeoDB AddOn - ', '', $md);
 	}
 }
 

@@ -1,50 +1,69 @@
 <?php
 
+$mypage = rex_request('page','string');
+$subpage = rex_request('subpage', 'string');
+$chapter = rex_request('chapter', 'string');
+$func = rex_request('func', 'string');
+
+// include markdwon parser
+if (!class_exists('Parsedown')) {
+	require($REX['INCLUDE_PATH'] . '/addons/opengeodb/classes/class.parsedown.inc.php');
+}
+
+// chapters
+$chapterpages = array (
+	'' => array($I18N->msg('opengeodb_help_chapter_readme'), 'pages/help/readme.inc.php'),
+	'changelog' => array($I18N->msg('opengeodb_help_chapter_changelog'), 'pages/help/changelog.inc.php'),
+	'license' => array($I18N->msg('opengeodb_help_chapter_license'), 'pages/help/license.inc.php'),
+);
+
+// build chapter navigation
+$chapternav = '';
+
+foreach ($chapterpages as $chapterparam => $chapterprops) {
+	if ($chapterprops[0] != '') {
+		if ($chapter != $chapterparam) {
+			$chapternav .= ' | <a href="?page=' . $mypage . '&amp;subpage=' . $subpage . '&amp;chapter=' . $chapterparam . '">' . $chapterprops[0] . '</a>';
+		} else {
+			$chapternav .= ' | <a class="rex-active" href="?page=' . $mypage . '&amp;subpage=' . $subpage . '&amp;chapter=' . $chapterparam . '">' . $chapterprops[0] . '</a>';
+		}
+	}
+}
+$chapternav = ltrim($chapternav, " | ");
+
+// build chapter output
+$addonroot = $REX['INCLUDE_PATH']. '/addons/'.$mypage.'/';
+$source    = $chapterpages[$chapter][1];
+
 // output
 echo '
-<div class="rex-addon-output">
-	<h2 class="rex-hl2">Hilfe</h2>
-	<div class="rex-addon-content">
-		<div class= "addon-template">
-';
+<div class="rex-addon-output" id="subpage-' . $subpage . '">
+  <h2 class="rex-hl2" style="font-size:1em">' . $chapternav . '</h2>
+  <div class="rex-addon-content">
+    <div class= "addon-template">
+    ';
 
-$search = array('[CHANGELOG.md](CHANGELOG.md)', '[LICENSE.md](LICENSE.md)');
-$replace = array('CHANGELOG.md', 'LICENSE.md');
-
-echo rex_opengeodb_utils::getHtmlFromMDFile('README.md', $search, $replace);
+include($addonroot . $source);
 
 echo '
-		</div>
-	</div>
+    </div>
+  </div>
 </div>';
 
 ?>
 
-<style type="text/css">
-#rex-page-opengeodb div.rex-addon-content {
-    padding: 10px 12px;
-}
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+	// make external links clickable
+	$("#subpage-help").delegate("a", "click", function(event) {
+		var host = new RegExp("/" + window.location.host + "/");
 
-#rex-page-opengeodb div.rex-addon-content ul {
-	margin-top: 0;
-}
+		if (!host.test(this.href)) {
+			event.preventDefault();
+			event.stopPropagation();
 
-#rex-page-opengeodb a.extern,
-#rex-page-opengeodb .rex-addon-output a[href^="http://"],
-#rex-page-opengeodb .rex-addon-output a[href^="https://"] {
-	background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAA8CAYAAACq76C9AAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAFFSURBVHjaYtTpO/CfAQcACCAmBjwAIIAY//9HaNTtP4hiCkAAMeGSAAGAAGJCl7hcaM8IYwMEEBMuCRAACCAmXBIgABBAKA5CBwABhNcrAAGEVxIggPBKAgQQXkmAAMIrCRBAeCUBAgivJEAA4ZUECCC8kgABhFcSIIDwSgIEEF5JgADCKwkQQHglAQIIryRAAOGVBAggvJIAAYRXEiCA8EoCBBBeSYAAwisJEEB4JQECiAVbNoABgADCqxMggPDmMoAAwpvLAAIIby4DCCC8uQwggPDmMoAAwpvLAAIIr1cAAgivJEAA4ZUECCC8kgABhFcSIIDwSgIEEF5JgADCKwkQQHglAQIIryRAAOGVBAggvJIAAYRXEiCA8EoCBBBeSYAAwisJEEB4JQECCK8kQADhlQQIILySAAGEVxIggPBKAgQYAARTLlfrU5G2AAAAAElFTkSuQmCC) no-repeat right 3px;
-	padding-right: 10px;
-	display: inline;
-}
-
-#rex-page-opengeodb .addon-template h1 {
-    font-size: 18px;
-    margin-bottom: 7px;
-}
-
-#rex-page-opengeodb .rex-addon-output .rex-hl2 {
-	padding-left : 12px;
-}
-</style>
-
-
+			window.open(this.href, "_blank");
+		}
+	});
+});
+</script>
