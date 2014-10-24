@@ -18,9 +18,10 @@ var_dump("Umkreis:" . var_export(ogdbRadius(47443, 20), TRUE));
 Hinweise
 --------
 
-* Getestet mit REDAXO 4.5
+* Getestet mit REDAXO 4.5, 4.6
 * AddOn-Ordner lautet: `opengeodb`
-* In der `settings.inc.php` werden kann angegeben welche Daten verwendet werden soll (siehe `data` Verzeichnis).
+* Einstellungen befinden sich in der Datei: `/include/data/addons/opengeodb/settings.inc.php`
+* In den Einstellungen kann angegeben werden welche Daten verwendet werden soll, siehe: `/include/addons/opengeodb/data/`
 
 Changelog
 ---------
