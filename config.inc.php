@@ -2,7 +2,7 @@
 // init addon
 $REX['ADDON']['name']['opengeodb'] = 'OpenGeoDB';
 $REX['ADDON']['page']['opengeodb'] = 'Opengeodb';
-$REX['ADDON']['version']['opengeodb'] = '1.0.0 DEV';
+$REX['ADDON']['version']['opengeodb'] = '1.0.0';
 $REX['ADDON']['author']['opengeodb'] = 'RexDude';
 $REX['ADDON']['supportpage']['opengeodb'] = 'forum.redaxo.de';
 $REX['ADDON']['perm']['opengeodb'] = 'opengeodb[]';
